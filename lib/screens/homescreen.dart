@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manipalhack/models/app_localization.dart';
+import 'package:manipalhack/screens/feed/feed_page.dart';
+import 'package:manipalhack/screens/rent_tools/display_rent_tools.dart';
 
 import 'package:manipalhack/services/auth.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -71,14 +73,15 @@ class _HomeScreenState extends State<HomeScreen> {
         //     ),
         //   ],
         // ),
-        bottomNavigationBar: nav_bar(),
+        bottomNavigationBar: nav_bar(context)
       ),
     );
   }
 
-  nav_bar() {
-    return Container();/*PersistentTabView(
-
+  nav_bar(BuildContext c) {
+    return PersistentTabView
+   (
+c,
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
@@ -109,12 +112,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       navBarStyle:
           NavBarStyle.style1, // Choose the nav bar style with this property.
-    );*/
+    );
   }
 
   List<Widget> _buildScreens() {
     return [
-      Container(),
+        DisplayRentTools(),
       // Container(), //TODO add disease detection
       // MyHomePage(),
       Container(),
@@ -126,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // MyHomePage(),
       //  Disease(), //TODO add disease detection
       // smartConnect(), //TODO add yield prediction
-            Container(),
+            Feed(),
  //TODO add feed
     ];
   }

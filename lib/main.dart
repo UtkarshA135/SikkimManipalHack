@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:manipalhack/models/app_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:manipalhack/screens/homescreen.dart';
 import 'screens/splash.dart';
 import 'package:provider/provider.dart';
 import 'services/userprovider.dart';
@@ -87,7 +88,7 @@ class MyApp extends StatefulWidget {
           /* darkTheme: ThemeData(
               brightness: Brightness.dark, primarySwatch: Colors.deepOrange),*/
           theme: ThemeData(primarySwatch: Colors.green),
-          home: SplashScreen(),
+          home: HomeScreen(),
         );
       }
     
