@@ -10,7 +10,7 @@ import 'package:manipalhack/models/rent_tools_model.dart';
 import 'package:manipalhack/screens/rent_tools/display_rent_tools_ctrl.dart';
 import 'package:manipalhack/screens/rent_tools/rent_tools_template.dart';
 import 'package:manipalhack/screens/weather/screens/homeScreen.dart';
-import 'package:manipalhack/services/auth.dart';
+import 'package:manipalhack/services/authservice.dart';
 import 'package:logger/logger.dart';
 
 import 'add_new.dart';
@@ -20,7 +20,6 @@ class DisplayRentTools extends StatelessWidget {
   final displayRentToolsCtrl = Get.put(DisplayRentToolsCtrl());
   final logger = Logger();
 
- 
   @override
   Widget build(BuildContext context) {
     void _changeLanguage(Language language) {
@@ -346,11 +345,8 @@ class DisplayRentTools extends StatelessWidget {
                 height: 20,
               ),
               Obx(() {
-              return 
-              Container();
-              
-               /*displayRentToolsCtrl.selectedCategory.value !=null ?
-                 StreamBuilder<dynamic>(
+                displayRentToolsCtrl.selectedCategory.value;
+                return StreamBuilder<dynamic>(
                   // stream: Firestore.instance.collection('rentTools').snapshots(),
                   stream: displayRentToolsCtrl.rentToolsStrems(),
                   builder: (context, snapshot) {
@@ -363,21 +359,20 @@ class DisplayRentTools extends StatelessWidget {
                         itemBuilder: (context, index) {
                           DocumentSnapshot rentTools =
                               snapshot.data.documents[index];
-                          /*RentToolsModel rentToolsModel =
-                              RentToolsModel.fromJson(rentTools.data);*/
-                          return Container();
-                          /*RentToolsTemplate(
-                              rentToolsModel: rentToolsModel);*/
+                          RentToolsModel rentToolsModel =
+                              RentToolsModel.fromJson(rentTools.data);
+                          return RentToolsTemplate(
+                              rentToolsModel: rentToolsModel);
                         },
                       );
                     } else if (snapshot.hasError) {
                       //do something with the error
-                      return Text("error");
+                      return Text(snapshot.error.toString());
                     }
                     //the data is not ready, show a loading indicator
                     return Center(child: CircularProgressIndicator());
                   },
-                ):  Center(child: CircularProgressIndicator());*/
+                );
               })
 
               // GridView.builder(

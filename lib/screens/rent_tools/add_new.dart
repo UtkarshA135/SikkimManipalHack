@@ -19,7 +19,7 @@ class _AddItemState extends State<AddItem> {
   String dropdownValue = "Tractors";
   String newValue;
   final logger = Logger();
-  //final addRentToolsCtrl = Get.put(AddRentToolsCtrl());
+  final addRentToolsCtrl = Get.put(AddRentToolsCtrl());
   // Future<void> loadAssets() async {
   //   logger.d("loadAssets called");
   //   // print("======================================loadAssets called");
@@ -68,7 +68,7 @@ class _AddItemState extends State<AddItem> {
         imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
         setState(() {
           this.imageFile = imageFile;
-       //   addRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
+          addRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
         });
       } else {
         imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -139,7 +139,7 @@ class _AddItemState extends State<AddItem> {
               onPressed: () async {
                 // Navigator.pop(context);
                 // await addRentToolsCtrl.postImage(imageFile);
-                //await addRentToolsCtrl.addRentTools(imageFile);
+                await addRentToolsCtrl.addRentTools(imageFile);
                 // if (addRentToolsCtrl.isLoading.value) {
                 //   Get.dialog(Container(child: Text("Please wait...Uploading")));
                 // }
@@ -167,7 +167,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-           //   addRentToolsCtrl.rentToolsModel.toolName = value;
+              addRentToolsCtrl.rentToolsModel.toolName = value;
             },
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
@@ -182,7 +182,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-            //  addRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
+              addRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -208,6 +208,7 @@ class _AddItemState extends State<AddItem> {
             onChanged: (String newValue) {
               setState(() {
                 dropdownValue = newValue;
+                addRentToolsCtrl.rentToolsModel.toolType = newValue;
               });
             },
             items: <String>['Tractors', 'Harvestors', 'Pesticides', 'Others']
@@ -223,7 +224,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-             // addRentToolsCtrl.rentToolsModel.toolDescription = value;
+              addRentToolsCtrl.rentToolsModel.toolDescription = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

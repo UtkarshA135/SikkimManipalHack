@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:manipalhack/services/auth.dart';
-
-
+import 'package:manipalhack/services/authservice.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,7 +12,6 @@ class StartState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return initScreen(context);
   }
-
 
   @override
   void initState() {
@@ -28,19 +25,23 @@ class StartState extends State<SplashScreen> {
   }
 
   route() {
-    Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (context) => AuthService().handleAuth(),
-    )
-    );
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AuthService().handleAuth(),
+        ));
   }
 
   initScreen(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+        backgroundColor: Colors.white,
         body: Center(
-          child: Container(height: height/2,width: width/1.2,
+          child: Container(
+            height: height / 2,
+            width: width / 1.2,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/farmer.jpg"),
@@ -48,7 +49,6 @@ class StartState extends State<SplashScreen> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

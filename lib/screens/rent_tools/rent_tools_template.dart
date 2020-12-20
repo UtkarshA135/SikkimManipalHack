@@ -37,7 +37,7 @@ class RentToolsTemplate extends StatelessWidget {
               Image(
                 height: MediaQuery.of(context).size.height / 4,
                 width: MediaQuery.of(context).size.width,
-                image: NetworkImage(rentToolsModel?.toolImage),
+                image: NetworkImage(rentToolsModel?.toolImage ?? "No image"),
                 fit: BoxFit.cover,
               ),
               SizedBox(

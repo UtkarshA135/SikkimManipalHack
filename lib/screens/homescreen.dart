@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manipalhack/models/app_localization.dart';
+import 'package:manipalhack/screens/Yield/yield.dart';
+import 'package:manipalhack/screens/diseaseDetection/modalHelper.dart';
 import 'package:manipalhack/screens/feed/feed_page.dart';
 import 'package:manipalhack/screens/rent_tools/display_rent_tools.dart';
-
-import 'package:manipalhack/services/auth.dart';
+import 'package:manipalhack/screens/smartConnect/smartConnect.dart';
+import 'package:manipalhack/services/authservice.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
+import 'smartConnect/connect.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -73,15 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
         //     ),
         //   ],
         // ),
-        bottomNavigationBar: nav_bar(context)
+        bottomNavigationBar: nav_bar(),
       ),
     );
   }
 
-  nav_bar(BuildContext c) {
-    return PersistentTabView
-   (
-c,
+  nav_bar() {
+    return PersistentTabView(
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
@@ -117,20 +118,17 @@ c,
 
   List<Widget> _buildScreens() {
     return [
-        DisplayRentTools(),
+      DisplayRentTools(),
       // Container(), //TODO add disease detection
       // MyHomePage(),
-      Container(),
+      Disease(), //TODO add disease detection
       // Container(),
-            Container(),
-
-            Container(),
-//TODO add yield prediction
+      Yield(),
+      connect(), //TODO add yield prediction
       // MyHomePage(),
       //  Disease(), //TODO add disease detection
       // smartConnect(), //TODO add yield prediction
-            Feed(),
- //TODO add feed
+      Feed() //TODO add feed
     ];
   }
 
@@ -140,36 +138,31 @@ c,
         icon: Icon(
           Icons.build,
         ),
-        title: ( AppLocalizations.of(context)
-                                            .translate ("Tools") ),
+        title: (AppLocalizations.of(context).translate("Tools")),
         activeColor: Colors.green,
         inactiveColor: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.local_florist),
-        title: (AppLocalizations.of(context)
-                                            .translate ("Diseases")),
+        title: (AppLocalizations.of(context).translate("Diseases")),
         activeColor: Colors.green,
         inactiveColor: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.attach_money),
-        title: (AppLocalizations.of(context)
-                                            .translate ("Yield")),
+        title: (AppLocalizations.of(context).translate("Yield")),
         activeColor: Colors.green,
         inactiveColor: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.store),
-        title: (AppLocalizations.of(context)
-                                            .translate ("Connect")),
+        title: (AppLocalizations.of(context).translate("Connect")),
         activeColor: Colors.green,
         inactiveColor: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.news_solid),
-        title: (AppLocalizations.of(context)
-                                            .translate ("Feed")),
+        title: (AppLocalizations.of(context).translate("Feed")),
         activeColor: Colors.green,
         inactiveColor: Colors.grey,
       ),

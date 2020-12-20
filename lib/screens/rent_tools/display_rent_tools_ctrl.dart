@@ -32,6 +32,12 @@ class DisplayRentToolsCtrl extends GetxController {
           .collection('rentTools')
           .where('toolType', isEqualTo: "Pesticides")
           .snapshots();
+    } else if (selectedCategory.value == "Others") {
+      logger.d("insie else if Others");
+      return Firestore.instance
+          .collection('rentTools')
+          .where('toolType', isEqualTo: "Others")
+          .snapshots();
     }
   }
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:manipalhack/models/rent_tools_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 class DescPage extends StatelessWidget {
   final RentToolsModel rentToolsModel;
 
   const DescPage({Key key, this.rentToolsModel}) : super(key: key);
   call(String x) async {
-  await launch('tel:$x');
-}
+    await launch('tel:$x');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,9 +55,7 @@ class DescPage extends StatelessWidget {
                   children: [
                     RaisedButton(
                       onPressed: () {
-                        call(
-           rentToolsModel.ownerContactInfo
-                        );
+                        call(rentToolsModel.ownerContactInfo);
                       },
                       shape: StadiumBorder(),
                       child: Center(
@@ -76,24 +76,24 @@ class DescPage extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    RaisedButton(
-                      onPressed: () {},
-                      shape: StadiumBorder(),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Icon(Icons.check),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Book",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // RaisedButton(
+                    //   onPressed: () {},
+                    //   shape: StadiumBorder(),
+                    //   child: Center(
+                    //     child: Row(
+                    //       children: [
+                    //         Icon(Icons.check),
+                    //         SizedBox(
+                    //           width: 5,
+                    //         ),
+                    //         Text(
+                    //           "Book",
+                    //           style: TextStyle(fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
