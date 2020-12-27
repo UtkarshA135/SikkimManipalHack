@@ -70,7 +70,7 @@ class _AddItemState extends State<AddItem> {
         imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
         setState(() {
           this.imageFile = imageFile;
-          displayRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
+          addRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
         });
       } else {
         imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -171,7 +171,7 @@ class _AddItemState extends State<AddItem> {
               'Current Location: ${(displayRentToolsCtrl.currentAddress) ?? "fetching..."}')),
           TextFormField(
             onChanged: (value) {
-              displayRentToolsCtrl.rentToolsModel.toolName = value;
+              addRentToolsCtrl.rentToolsModel.toolName = value;
             },
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
@@ -186,7 +186,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-              displayRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
+              addRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -212,7 +212,7 @@ class _AddItemState extends State<AddItem> {
             onChanged: (String newValue) {
               setState(() {
                 dropdownValue = newValue;
-                displayRentToolsCtrl.rentToolsModel.toolType = newValue;
+                addRentToolsCtrl.rentToolsModel.toolType = newValue;
               });
             },
             items: <String>['Tractors', 'Harvestors', 'Pesticides', 'Others']
@@ -228,7 +228,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-              displayRentToolsCtrl.rentToolsModel.toolDescription = value;
+              addRentToolsCtrl.rentToolsModel.toolDescription = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

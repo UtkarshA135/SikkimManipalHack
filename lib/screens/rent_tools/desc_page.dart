@@ -32,19 +32,21 @@ class DescPage extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                rentToolsModel.toolName,
+                "Tool Name: ${rentToolsModel.toolName}",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                rentToolsModel.toolPricePerDay,
+                "Tool Cost/day: ${rentToolsModel.toolPricePerDay}",
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
-              Text(rentToolsModel.toolDescription),
+              Text(
+                "Tool Description: ${rentToolsModel.toolDescription}",
+              ),
               SizedBox(
                 height: 10,
               ),

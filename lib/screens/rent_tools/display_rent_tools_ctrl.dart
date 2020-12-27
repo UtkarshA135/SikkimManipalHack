@@ -20,7 +20,7 @@ class DisplayRentToolsCtrl extends GetxController {
   TextEditingController searchPlaceCtrl = TextEditingController();
   // String myCurrentLocation = "Katihar,Bihar,India";
   @override
-  void onInit() {
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
 
@@ -28,7 +28,8 @@ class DisplayRentToolsCtrl extends GetxController {
     // Get.put<AddRentToolsCtrl>(AddRentToolsCtrl()).getCurrentLocation();
     // Get.find<AddRentToolsCtrl>().getAddressFromLatLng();
     // Get.find<AddRentToolsCtrl>().getCurrentLocation();
-    getCurrentLocation();
+    await getCurrentLocation();
+    // rentToolsModel.currentLocation = currentAddress.value;
   }
 
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -104,6 +105,7 @@ class DisplayRentToolsCtrl extends GetxController {
   // }
 
   rentToolsStreams() {
+    // rentToolsModel.currentLocation = currentAddress.value;
     // return Firestore.instance.collection('rentTools').document().snapshot;
     if (selectedCategory.value == "All") {
       logger.d("insie if");

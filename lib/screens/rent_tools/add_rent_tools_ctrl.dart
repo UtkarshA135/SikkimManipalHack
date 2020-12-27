@@ -9,7 +9,7 @@ import 'package:manipalhack/models/rent_tools_model.dart';
 import 'package:logger/logger.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
-import 'package:multi_image_picker/multi_image_picker.dart';
+import 'display_rent_tools_ctrl.dart';
 
 class AddRentToolsCtrl extends GetxController {
   RentToolsModel rentToolsModel = RentToolsModel();
@@ -20,6 +20,7 @@ class AddRentToolsCtrl extends GetxController {
   String ownerContactInfo;
   // Firestore firestore = FirebaseFirestore.instance;
   String contact = "";
+  final displayRentToolsCtrl = Get.find<DisplayRentToolsCtrl>();
   Future<dynamic> postImage(File imageFile) async {
     logger.d('inside postImage');
 
@@ -63,9 +64,10 @@ class AddRentToolsCtrl extends GetxController {
   //   // =int.parse(contact);
   // }
 
-  
-
   addRentTools(imageFile) async {
+    rentToolsModel.currentLocation =
+        displayRentToolsCtrl?.currentAddress?.value;
+
     // isLoading(true);
     Get.dialog(
       Material(
