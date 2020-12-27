@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import 'display_rent_tools.dart';
 import 'display_rent_tools_ctrl.dart';
 
 class ChoosePlace extends StatefulWidget {
@@ -78,12 +79,41 @@ class _ChoosePlaceState extends State<ChoosePlace> {
               ),
             ),
             title: Text(displayRentToolsCtrl.instituteResultList[index]),
-            onTap: () {
-              displayRentToolsCtrl.selectInstituteFromDropdowm(
-                  displayRentToolsCtrl.instituteResultList[index]);
+            onTap: () async {
+              // displayRentToolsCtrl.selectInstituteFromDropdowm(
+              //     displayRentToolsCtrl.instituteResultList[index]);
+              displayRentToolsCtrl.currentAddress.value =
+                  displayRentToolsCtrl.instituteResultList[index];
               logger.d(
                 "institute selected: ${displayRentToolsCtrl.instituteResultList[index]}",
               );
+              await Get.defaultDialog(
+                  title: "Selected Place is : ",
+                  content:
+                      Text(displayRentToolsCtrl.instituteResultList[index]),
+                  textConfirm: "Yep!",
+                  confirmTextColor: Colors.white,
+                  textCancel: "Cancle",
+                  // cancelTextColor: Colors.red,
+                  onConfirm: () {
+                    // Navigator.of(context).pop();
+                    Get.back();
+                    return Navigator.of(context).pop();
+                    // return Get.offAll(DisplayRentTools());
+                  }
+                  //  Navigator.of(context).push(
+                  //       MaterialPageRoute(
+                  //         builder: (context) => DisplayRentTools(),
+                  //       ),
+                  //     )
+                  // onCancel:()=> Get.back(),
+                  );
+              // Navigator.of(context).pop();
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => DisplayRentTools(),
+              //   ),
+              // );
               // setState(() {
               //   displayRentToolsCtrl.isInstituteSelected = true;
               //   displayRentToolsCtrl.instituteResultList = [];

@@ -87,21 +87,21 @@ class DisplayRentToolsCtrl extends GetxController {
     logger.d('instituteResultList is: ${instituteResultList}');
   }
 
-  selectInstituteFromDropdowm(String selectedInstitute) {
-    currentAddress.value = selectedInstitute;
-    // studentModel?.userInstituteLocation = selectedInstitute;
-    // instituteResultList = [];
-    Get.defaultDialog(
-      title: "Selected Place is : ",
-      content: Text(selectedInstitute),
-      textConfirm: "Yep!",
-      confirmTextColor: Colors.white,
-      textCancel: "Cancle",
-      // cancelTextColor: Colors.red,
-      onConfirm: () => Get.offAll(DisplayRentTools()),
-      // onCancel:()=> Get.back(),
-    );
-  }
+  // selectInstituteFromDropdowm(String selectedInstitute) {
+  //   currentAddress.value = selectedInstitute;
+  //   // studentModel?.userInstituteLocation = selectedInstitute;
+  //   // instituteResultList = [];
+  //   Get.defaultDialog(
+  //     title: "Selected Place is : ",
+  //     content: Text(selectedInstitute),
+  //     textConfirm: "Yep!",
+  //     confirmTextColor: Colors.white,
+  //     textCancel: "Cancle",
+  //     // cancelTextColor: Colors.red,
+  //     onConfirm: () => Get.offAll(DisplayRentTools()),
+  //     // onCancel:()=> Get.back(),
+  //   );
+  // }
 
   rentToolsStreams() {
     // return Firestore.instance.collection('rentTools').document().snapshot;

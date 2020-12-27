@@ -186,7 +186,11 @@ class _DisplayRentToolsState extends State<DisplayRentTools> {
                         child: IconButton(
                           icon: Icon(Icons.edit),
                           onPressed: () {
-                            Get.to(ChoosePlace());
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ChoosePlace(),
+                              ),
+                            );
                           },
                         ),
                       ),
