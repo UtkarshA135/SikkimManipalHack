@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:manipalhack/models/rent_tools_model.dart';
 import 'package:logger/logger.dart';
@@ -61,6 +62,8 @@ class AddRentToolsCtrl extends GetxController {
   //   });
   //   // =int.parse(contact);
   // }
+
+  
 
   addRentTools(imageFile) async {
     // isLoading(true);

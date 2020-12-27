@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:manipalhack/screens/rent_tools/add_rent_tools_ctrl.dart';
 import 'package:manipalhack/screens/weather/model/forecastModel.dart';
 import 'package:manipalhack/screens/weather/model/weatherModel.dart';
 import 'package:manipalhack/screens/weather/widgets/weather.dart';
@@ -16,6 +18,7 @@ class _HomescreenState extends State<WHomescreen> {
   bool isLoading = false;
   WeatherData weatherData;
   ForecastData forecastData;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
 
   loadWeather() async {
     setState(() {
@@ -23,8 +26,8 @@ class _HomescreenState extends State<WHomescreen> {
     });
     Position position;
     try {
-      position =
-          await getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+      position = await geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.low);
     } catch (e) {
       print(e);
     }
@@ -59,6 +62,8 @@ class _HomescreenState extends State<WHomescreen> {
   void initState() {
     super.initState();
     loadWeather();
+    // Get.find<AddRentToolsCtrl>().getAddressFromLatLng();
+    // Get.find<AddRentToolsCtrl>().getCurrentLocation();
   }
 
   @override

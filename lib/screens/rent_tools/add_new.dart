@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 import 'add_rent_tools_ctrl.dart';
+import 'display_rent_tools_ctrl.dart';
 
 class AddItem extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _AddItemState extends State<AddItem> {
   String dropdownValue = "Tractors";
   String newValue;
   final logger = Logger();
+  final displayRentToolsCtrl = Get.put(DisplayRentToolsCtrl());
   final addRentToolsCtrl = Get.put(AddRentToolsCtrl());
   // Future<void> loadAssets() async {
   //   logger.d("loadAssets called");
@@ -68,7 +70,7 @@ class _AddItemState extends State<AddItem> {
         imageFile = await ImagePicker.pickImage(source: ImageSource.camera);
         setState(() {
           this.imageFile = imageFile;
-          addRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
+          displayRentToolsCtrl.rentToolsModel.toolImage = imageFile.toString();
         });
       } else {
         imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -138,9 +140,9 @@ class _AddItemState extends State<AddItem> {
             child: RaisedButton(
               onPressed: () async {
                 // Navigator.pop(context);
-                // await addRentToolsCtrl.postImage(imageFile);
+                // await displayRentToolsCtrl.postImage(imageFile);
                 await addRentToolsCtrl.addRentTools(imageFile);
-                // if (addRentToolsCtrl.isLoading.value) {
+                // if (displayRentToolsCtrl.isLoading.value) {
                 //   Get.dialog(Container(child: Text("Please wait...Uploading")));
                 // }
                 Navigator.pop(context);
@@ -165,9 +167,11 @@ class _AddItemState extends State<AddItem> {
           SizedBox(
             height: 10,
           ),
+          Obx(() => Text(
+              'Current Location: ${(displayRentToolsCtrl.currentAddress) ?? "fetching..."}')),
           TextFormField(
             onChanged: (value) {
-              addRentToolsCtrl.rentToolsModel.toolName = value;
+              displayRentToolsCtrl.rentToolsModel.toolName = value;
             },
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
@@ -182,7 +186,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-              addRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
+              displayRentToolsCtrl.rentToolsModel.toolPricePerDay = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -208,7 +212,7 @@ class _AddItemState extends State<AddItem> {
             onChanged: (String newValue) {
               setState(() {
                 dropdownValue = newValue;
-                addRentToolsCtrl.rentToolsModel.toolType = newValue;
+                displayRentToolsCtrl.rentToolsModel.toolType = newValue;
               });
             },
             items: <String>['Tractors', 'Harvestors', 'Pesticides', 'Others']
@@ -224,7 +228,7 @@ class _AddItemState extends State<AddItem> {
           ),
           TextFormField(
             onChanged: (value) {
-              addRentToolsCtrl.rentToolsModel.toolDescription = value;
+              displayRentToolsCtrl.rentToolsModel.toolDescription = value;
             },
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

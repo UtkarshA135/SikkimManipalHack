@@ -14,10 +14,17 @@ import 'package:manipalhack/services/authservice.dart';
 import 'package:logger/logger.dart';
 
 import 'add_new.dart';
+import 'choose_place.dart';
 import 'desc_page.dart';
 
-class DisplayRentTools extends StatelessWidget {
+class DisplayRentTools extends StatefulWidget {
+  @override
+  _DisplayRentToolsState createState() => _DisplayRentToolsState();
+}
+
+class _DisplayRentToolsState extends State<DisplayRentTools> {
   final displayRentToolsCtrl = Get.put(DisplayRentToolsCtrl());
+
   final logger = Logger();
 
   @override
@@ -165,8 +172,60 @@ class DisplayRentTools extends StatelessWidget {
               //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               // ),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
+              Obx(() => Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "Current Address : ${displayRentToolsCtrl.currentAddress.value}",
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                            Get.to(ChoosePlace());
+                          },
+                        ),
+                      ),
+                    ],
+                  )),
+              // Obx(
+              //   () => DropdownButtonFormField<String>(
+              //     decoration: InputDecoration(
+              //       enabledBorder: OutlineInputBorder(
+              //           borderSide: BorderSide(color: Colors.grey)),
+              //       border: OutlineInputBorder(),
+              //       labelText: "Current Location",
+              //     ),
+              //     value: displayRentToolsCtrl.currentAddress.value,
+              //     icon: Icon(Icons.arrow_drop_down),
+              //     iconSize: 24,
+              //     elevation: 16,
+              //     onChanged: (String newValue) {
+              //       setState(() {
+              //         displayRentToolsCtrl.currentAddress.value = newValue;
+              //         displayRentToolsCtrl.rentToolsStreams();
+              //         // addRentToolsCtrl.rentToolsModel.toolType = newValue;
+              //       });
+              //     },
+              //     items: <String>[
+              //       // 'Katihar,Bihar,India',
+              //       displayRentToolsCtrl.currentAddress.value,
+              //       'Harvestors',
+              //       'Pesticides',
+              //       'Others'
+              //     ].map<DropdownMenuItem<String>>((String value) {
+              //       return DropdownMenuItem<String>(
+              //         value: value,
+              //         child: Text(value),
+              //       );
+              //     }).toList(),
+              //   ),
+              // ),
+              SizedBox(height: 7),
               Container(
                 height: 75,
                 child: ListView(
@@ -344,11 +403,12 @@ class DisplayRentTools extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+
               Obx(() {
                 displayRentToolsCtrl.selectedCategory.value;
                 return StreamBuilder<dynamic>(
                   // stream: Firestore.instance.collection('rentTools').snapshots(),
-                  stream: displayRentToolsCtrl.rentToolsStrems(),
+                  stream: displayRentToolsCtrl.rentToolsStreams(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       //do something with the data
